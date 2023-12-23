@@ -1,12 +1,16 @@
 from flask import Flask, request, jsonify
 import openai
 import csv
+import os
 
-api_key = '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'
+api_key = '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'
 url = 'https://api.openai.com/v1/completions'
 
 app = Flask(__name__)
 openai.api_key = api_key
+
+if not os.path.exists("data"):
+    os.makedirs("data")
 
 @app.route('/ask', methods = ['POST'])
 def ask():
@@ -23,10 +27,13 @@ def ask():
         max_tokens=100
     )
     answer = response.json['choices'][0]['text'].strip()
-    with open('/app/data/questions_answers.csv', mode='a', newline='') as file:
+
+    csv_path = '/data/questions_answers.csv'
+    with open(csv_path, mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([user_question, answer])
     return jsonify({'answer': answer})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='192.168.11.103', port=5000)
+    

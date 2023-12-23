@@ -1,7 +1,10 @@
-FROM python:3.8-slim
-WORKDIR /app
-COPY requirements.txt /app/
+FROM python:3.10-slim-buster
+WORKDIR /usr/src/app
+ADD app.py .
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 5000
-COPY . /app/
-CMD ["python", "app.py"]
+VOLUME [ "/app/data" ]
+COPY . .
+EXPOSE 5000 
+CMD ["python", "./app.py"]
+

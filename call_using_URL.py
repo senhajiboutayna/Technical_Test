@@ -1,6 +1,6 @@
 import requests
 
-api_key = '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'
+api_key = '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'
 url = 'https://api.openai.com/v1/completions'
 
 headers={
