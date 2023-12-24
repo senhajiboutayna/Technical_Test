@@ -1,6 +1,6 @@
 import requests
 
-api_key = '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'
+api_key = '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'
 url = 'https://api.openai.com/v1/completions'
 
 headers={
@@ -10,7 +10,7 @@ headers={
 
 data={
     'model': 'text-davinci-003',
-    'prompt' : 'what is gluten sensivity?',
+    'prompt' : 'what is gluten sensitivity?',
     'max_tokens': 4000,
     'temperature': 1.0,
 }
